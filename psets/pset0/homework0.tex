@@ -1,0 +1,339 @@
+
+
+\documentclass[11pt]{article}   
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{float}
+\restylefloat{table}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\np}{\mathop{\rm NP}}
+\newcommand{\binom}[2]{{#1 \choose #2}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\vol}{\mathop{\rm Vol}}
+\newcommand{\conp}{\mathop{\rm co-NP}}
+\newcommand{\atisp}{\mathop{\rm ATISP}}
+\renewcommand{\vec}[1]{{\mathbf #1}}
+\newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
+\newcommand{\mmod}[1]{\ (\mathrm{mod}\ #1)}  
+
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0in}
+%\input{dansmacs}
+
+
+\begin{document}
+
+\section*{CS 121 Homework Zero: Fall
+2020}\label{cs-121-homework-zero-fall-2020}
+
+The aim of problem set is to help you to test, and if needed to brush up, on the mathematical
+background needed to be successful in CS 121. This problem set will be
+due in the first week of class, but you are encouraged to start working on
+it over the summer.
+
+\textbf{Some policies:} (See the course policy at  {\tt http://madhu.seas.harvard.edu/courses/Fall2020/policy.html} for the
+full policies.)
+
+\begin{itemize}
+\item
+  {\bf Collaboration:} You can collaborate with other students that are currently enrolled in
+  this course (or, in the case of homework zero, planning to enroll in
+  this course) in brainstorming and thinking through approaches to
+  solutions but you should write the solutions on your own and cannot
+  share them with other students. 
+\item
+  {\bf Owning your solution:} Always make sure that you ``own'' your solutions to this other problem
+  sets. That is, you should always first grapple with the problems on
+  your own, and even if you participate in brainstorming sessions, make
+  sure that you completely understand the ideas and details underlying
+  the solution. This is in your interest as it ensures you have a solid
+  understanding of the course material, and will help in the midterms
+  and final. Getting 80\% of the problem
+  set questions right on your own will be much better to both your
+  understanding than getting 100\% of the questions through
+  gathering hints from others without true understanding.
+\item
+  {\bf Serious violations:} Sharing questions or solutions with anyone outside this course,
+  including posting on outside websites, is a violation of the honor
+  code policy. Collaborating with anyone except students currently
+  taking this course or using material from past years from this or
+  other courses is a violation of the honor code policy.
+\item
+  {\bf Submission Format:} The submitted PDF should be typed and in the same format and
+  pagination as ours. Please include the text of the problems and write
+  \textbf{Solution X:} before your solution. Please mark in gradescope 
+  the pages where
+  the solution to each question appears. Points will be deducted if you
+  submit in a different format.
+\item {\bf Late Day Policy:} To give students some flexibility to manage your schedule, you are allowed a net total of {\bf eight} late days through the semester, but you may not take more than {\bf two} late days on any single problem set. No exceptions to this policy. 
+\end{itemize}
+
+\textbf{By writing my name here I affirm that I am aware of all policies
+and abided by them while working on this problem set:}
+
+\textbf{Your name:} Todd Morrill
+
+\textbf{Collaborators:} (List here names of anyone you discussed
+problems or ideas for solutions with)
+
+% For homeworks 1 through n
+\textbf{No. of late days used on previous psets (not including Homework Zero): }\\
+\textbf{No. of late days used after including this pset: }
+
+
+\newpage
+
+
+\subsection*{Questions}\label{questions}
+
+Please solve the following problems. Some of these might be harder than
+the others, so don't despair if they require more time to think or you
+can't do them all. Just do your best. Also, you should only attempt the
+bonus questions if you have the time to do so. If you don't have a proof
+for a certain statement, be upfront about it. You can always explain
+clearly what you are able to prove and the point at which you were
+stuck. Also, for a non bonus question, you can always simply write
+\textbf{``I don't know''} and you will get 15 percent of the credit for
+this problem.
+
+The discussion board for this course will be active even before the course
+starts. If you are stuck on this problem set, you can use this discussion board to send
+a private message to all instructors under the \texttt{e-office-hours}
+folder.
+
+This problem set has a total of \textbf{50 points} and \textbf{11 bonus
+points}. A grade of 50 or more on this problem set is considered a
+perfect grade. If you get stuck in any questions, you might find the
+resources in the CS 121 background page at {\tt https://cs121.boazbarak.org/background/} helpful.
+
+\textbf{Problem 0 (5 points):} Read fully the \textbf{Mathematical
+Background Chapter} (Chapter 1) from the textbook at 
+{\tt http://madhu.seas.harvard.edu/courses/Fall2020/book.pdf}.
+This is probably the most important exercise in this problem set!!
+
+\textbf{Solution 0:} I certify that I fully read the
+mathematical background chapter.
+
+\newpage
+
+\subsubsection{Logical operations, sets, and
+functions}\label{logical-operations-sets-and-functions}
+
+These questions assume familiarity with strings, functions, relations,
+sets, and logical operators. We use an indexing from zero convention,
+and so given a length \(n\) binary string \(x\in \{0,1\}^n\), we denote
+coordinates of \(x\) by \(x_0,\ldots,x_{n-1}\). We use \([n]\) to denote
+the set \(\{0,1,\ldots,n-1\}\).
+
+\textbf{Question 1 (3 points):} Write a logical expression
+\(\varphi(x)\) involving the variables \(x_0,x_1,x_2\) and the operators
+\(\wedge\) (AND), \(\vee\) (OR), and \(\neg\) (NOT), such that
+\(\varphi(x)\) is true if and only if the majority of the inputs are
+\emph{False}.
+
+\textbf{Solution 1:} $\varphi(x_0,x_1,x_2) = \neg(x_0 \wedge x_1) \wedge \neg(x_0 \wedge x_2) \wedge \neg(x_1 \wedge x_2)$
+
+The proof is by truth table.
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|l|}{$x_0$} &
+    \multicolumn{1}{l|}{$x_1$} &
+    \multicolumn{1}{l|}{$x_2$} &
+    \multicolumn{1}{l|}{$\neg(x_0 \wedge x_1) \wedge \neg(x_0 \wedge x_2) \wedge \neg(x_1 \wedge x_2)$} \\ \hline
+  T & T & T & F \\ \hline
+  T & T & F & F \\ \hline
+  T & F & T & F \\ \hline
+  T & F & F & T \\ \hline
+  F & T & T & F \\ \hline
+  F & T & F & T \\ \hline
+  F & F & T & T \\ \hline
+  F & F & F & T \\ \hline
+  \end{tabular}
+  \end{table}
+
+\newpage
+
+\textbf{Question 2:} Use the logical quantifiers \(\forall\) (for all),
+\(\exists\) (exists), as well as \(\wedge,\vee,\neg\) and the arithmetic
+operations \(+,\times,=,>,<\) to write the following:
+
+\textbf{Question 2.1 (3 points):} An expression \(\psi(n,k)\) such that
+for every natural numbers \(n,k\), \(\psi(n,k)\) is true if and only if
+\(k\) divides \(n\).
+
+\textbf{Solution 2.1:}
+$\psi(n,k) = \exists_{j \in \mathbb{N}}. n = j \cdot k$
+
+\textbf{Question 2.2 (3 points bonus):} An expression \(\varphi(n)\)
+such that for every natural number \(n\), \(\varphi(n)\) is true if and
+only if \(n\) is a power of three.
+
+\textbf{Solution 2.2:}
+$\varphi(n) = \exists_{j \in \mathbb{N}}. \log_{3}(n) = j$
+
+\newpage
+
+\textbf{Question 3:} In this question, you need to describe in words
+sets that are defined using a formula with quantifiers. For example, the
+set \(S = \{ x\in \mathbb{N} \;:\; \exists_{y\in\mathbb{N}} x=2y \}\) is
+the set of even numbers.
+
+\textbf{Question 3.1 (3 points):} Describe in words the following set
+\(S\):
+
+\[
+S = \{ x\in \{0,1\}^{100} : \forall_{i\in \{0,\ldots, 98\}} x_i = x_{i+1} \}
+\]
+
+(Recall that, as written in the mathematical background chapter, we use
+zero-based indexing in this course, and so a string
+\(x\in \{0,1\}^{100}\) is indexed as \(x_0x_1\cdots x_{99}\).)
+
+\textbf{Solution 3.1:} $S$ is the set of strings of length 100 such that all letters
+in the string are equal (i.e. all 0 or all 1).
+
+\textbf{Question 3.2 (3 points):} Describe in words the following set
+\(T\):
+
+\[
+T = \{ x\in \{0,1\}^* : |x|>1 \mbox{ and } \forall_{i \in \{2,\ldots,|x|-1 \} } \forall_{j \in \{2,\ldots,|x|-1\}} i\cdot j \neq |x| \}
+\]
+
+\textbf{Solution 3.2:} $T$ is the set of all bit strings of prime length.
+
+\newpage
+
+\textbf{Question 4:} This question deals with sets, their cardinalities,
+and one to one and onto functions. You can cite results connecting these
+notions from the course's textbook, MIT's ``Mathematics for Computer
+Science'' or any other discrete mathematics textbook.
+
+\textbf{Question 4.1 (4 points):} Define \(S = \{0,1\}^6\) and \(T\) as
+the set \(\{ n \in [100] \;|\; \mbox{$n$ is prime } \}\). \emph{Prove or
+disprove:} There is a one to one function from \(S\) to \(T\).
+
+\textbf{Solution 4.1:}
+$|S| = 2^6 = 64$ while $|T| = 25$. By the Pigeonhole Principle, there must be multiple 
+elements $s \in S$ that map to some of the elements $t \in T$. Therefore, there is no
+one-to-one function mapping $S$ to $T$.
+
+\textbf{Question 4.2 (4 points):} Let \(n=100\),
+\(S = [n] \times [n] \times [n]\) and \(T=\{0,1\}^n\). \emph{Prove or
+disprove:} There is an onto function from \(T\) to \(S\).
+
+\textbf{Solution 4.2:}
+\begin{proof}
+  $|T| = 2^{100}$ while $|S| = 10^6$. Since $|T| > |S|$, there is an onto function
+  from $T$ to $S$.
+\end{proof}
+
+\textbf{Question 4.3 (4 points):} Let \(n=100\), let
+\(S = \{0,1\}^{n^3}\) and \(T\) be the set of all functions mapping
+\(\{0,1\}^n\) to \(\{0,1\}\). \emph{Prove or disprove:} There is a one
+to one function from \(S\) to \(T\).
+
+\textbf{Solution 4.3:}
+\begin{proof}
+  $|S| = 2^{100^3}$ while $|T| = 2^{2^{100}}$. Since $|S| < |T|$, there is an 
+  one-to-one function from $S$ to $T$.
+\end{proof}
+
+\newpage
+
+\textbf{Question 5.1 (5 points):} Prove that for every finite sets
+\(A,B,C\), \(|A \cup B \cup C| \leq |A|+|B|+|C|\).
+
+\textbf{Solution 5.1:}
+\begin{proof}
+  $|A \cup B \cup C| = |A|+|B|+|C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B \cap C|$ 
+  by the Inclusion-Exclusion Principle. $|A\cap B|, |A\cap C|, |B\cap C| \geq 0$
+  and $|A\cap B| + |A\cap C| + |B\cap C| \geq  |A\cap B \cap C|$ and therefore, 
+  $|A \cup B \cup C| \leq |A|+|B|+|C|$, which is what we needed to show.
+\end{proof}
+
+\textbf{Question 5.2 (5 points bonus):} Prove that for every finite sets
+\(A,B,C\),
+\(|A \cup B \cup C| \geq |A|+|B|+|C| - |A \cap B| - |B \cap C| - |A \cap C|\).
+
+\textbf{Solution 5.2:}
+\begin{proof}
+  $|A \cup B \cup C| = |A|+|B|+|C| - |A\cap B| - |A\cap C| - |B\cap C| + |A\cap B \cap C|$ 
+  by the Inclusion-Exclusion Principle. $|A\cap B \cap C| \geq 0$ and therefore, 
+  $|A \cup B \cup C| \geq |A|+|B|+|C| - |A \cap B| - |B \cap C| - |A \cap C|$, which is what we needed to show.
+\end{proof}
+
+\newpage
+
+\subsubsection{Graphs}\label{graphs}
+
+Thee following two questions assume familiarity with basic graph theory.
+If you need to look up or review any terms, the CS 121 background page at
+{\tt https://cs121.boazbarak.org/background/}
+contains several freely available online resources on graph theory. This
+material also appears in Chapters 13,14,16 and 17 of the CS 20 textbook
+``Essential Discrete Mathematics for Computer Science'' by Harry Lewis
+and Rachel Zax.
+
+\textbf{Question 6.1 (5 points):} Prove that if \(G\) is a directed
+acyclic graph (DAG) on \(n\) vertices, if \(u\) and \(v\) are two
+vertices of \(G\) such that there is a directed path of length \(n-1\)
+from \(u\) to \(v\) then \(u\) has no in-neighbors.\footnote{\emph{Hint:}
+  You can use the topological sorting theorem shown in the mathematical
+  background chapter.}
+
+\textbf{Solution 6.1:}
+\begin{proof}
+  By Lemma 1.23 in the mathematical background chapter, if $G$ is acyclic then it
+  has a layering. Let $f : V \rightarrow \mathbb{N}$ be a layering of $G$. 
+  Suppose for the sake of contradiction that $u$ does have an in-neighbor, $w$, 
+  which implies $f(w) < f(u)$. But $f(u) < f(w) < f(v)$ since there are there are 
+  $n-1$ edges on the path from $u$ to $v$ and only $n$ vertices. But this is a 
+  contradiction and therefore we can conlude that $u$ has no in-neighbors.
+\end{proof}
+
+\textbf{Question 6.2 (5 points):} Prove that for every undirected graph
+\(G\) of \(1000\) vertices, if every vertex has degree at most \(4\),
+then there exists a subset \(S\) of at least \(200\) vertices such that
+no two vertices in \(S\) are neighbors of one another.
+
+\textbf{Solution 6.2:}
+\begin{proof}
+  Suppose that we arbitrarily select vertices from $G$ to be removed
+  and added to subset $S$. Each time we choose a vertex to be added to set $S$ we remove
+  up to 5 vertices - the vertex to be added to set $S$ and the maximum of 4 vertices
+  connected to it. This process can be repeated at least 200 times before exhausting
+  all vertices in $G$.
+\end{proof}
+
+\newpage
+
+\subsubsection{Big-O Notation}\label{big-o-notation}
+
+\textbf{Question 7:} For each pair of functions \(f,g\) below, state
+whether or not \(f=O(g)\) and whether or not \(g=O(f)\).
+
+\textbf{Question 7.1 (3 points):} \(f(n)=n(\log n)^3\) and \(g(n)=n^2\).
+
+\textbf{Solution 7.1:} $f = O(g)$, $g \neq O(f)$
+
+\textbf{Question 7.2 (3 points):} \(f(n)= n^{\log n}\) and
+\(g(n) = n^2\).
+
+\textbf{Solution 7.2:} $g = O(f)$, $f \neq O(g)$
+
+\textbf{Question 7.3 (3 points bonus):}
+\(f(n) = \binom{n}{\lceil 0.2 n \rceil}\) (where \(\binom{n}{k}\) is the
+number of \(k\)-sized subsets of a set of size \(n\)) and
+\(g(n) = 2^{0.1 n}\).\footnote{\emph{Hint:} one way to do this is to use
+  {Stirling's approximation} ({\tt https://en.wikipedia.org/wiki/Stirling\%27s\_approximation}).}
+
+\textbf{Solution 7.3:} $g = O(f)$, $f \neq O(g)$
+
+\end{document}
+
+

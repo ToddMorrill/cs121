@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}   
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\np}{\mathop{\rm NP}}
+%\newcommand{\binom}[2]{{#1 \choose #2}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\vol}{\mathop{\rm Vol}}
+\newcommand{\conp}{\mathop{\rm co-NP}}
+\newcommand{\atisp}{\mathop{\rm ATISP}}
+\renewcommand{\vec}[1]{{\mathbf #1}}
+\newcommand{\cupdot}{\mathbin{\mathaccent\cdot\cup}}
+\newcommand{\mmod}[1]{\ (\mathrm{mod}\ #1)}  
+
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0in}
+%\input{dansmacs}
+
+
+\begin{document}
+	
+	\section*{CS 121 Homework 2: Fall
+		2020}\label{cs-121-homework-zero-fall-2020}
+
+	\textbf{Some policies:} (See the course policies page at \\ {\tt http://madhu.seas.harvard.edu/courses/Fall2020/policy.html} for the
+	full policies.)
+	
+	\begin{itemize}
+		\item 
+		{\bf Collaboration:} You may collaborate with other   students that are currently enrolled in
+		this course 
+		in brainstorming and thinking through approaches to
+		solutions, but you should write the solutions on your own and may not
+		share them with other students. 
+		\item
+		{\bf Owning your solution:} Always make sure that you ``own'' your solutions to this and other problem
+		sets. That is, you should always first grapple with the problems on
+		your own, and even if you participate in brainstorming sessions, make
+		sure that what you write down to submit reflects your own understanding of the solution.
+		This is in your interest as it ensures you have a solid
+		understanding of the course material, which will help in the midterms
+		and final. Getting 80\% of the problem
+		set questions right on your own will be much better to both your
+		understanding and grade than getting 100\% of the questions by
+		gathering hints from others without true understanding.
+		\item
+		{\bf Serious violations:} Sharing questions or solutions with anyone outside this course,
+		including posting on outside websites, is a violation of the honor
+		code policy. In particular, you may not get help from students or materials from past years of 			
+		this or equivalent courses.
+		\item
+		{\bf Submission Format:} The submitted PDF should be typed and in the same format as 
+		ours. Please include the text of the problems and write
+		\textbf{Solution X:} before your solution. Please mark in Gradescope 
+		the pages where
+		the solution to each question appears. We may deduct points if you
+		submit in a different format.
+		\item {\bf Late Day Policy:} To give students some flexibility to manage your schedule, you are allowed a total of {\bf eight} late days through the semester, but you may not take more than {\bf two} late days on any single problem set. 
+	\end{itemize}
+	
+	\textbf{By writing my name here I affirm that I am aware of these policies
+		and abided by them while working on this problem set:}
+	
+	\textbf{Your name:} %(Write name and HUID here)
+	
+	\textbf{Collaborators:} %(List here names of anyone you discussed problems or ideas for solutions with)
+	
+	\textbf{No. of late days used on previous psets (not including Homework Zero): %Fill in
+}\\
+	\textbf{No. of late days used after including this pset: %Fill in
+}
+	
+	
+	\newpage
+
+%\subsection*{Questions}\label{questions}
+{\color{red} Please solve the following problems. Some of these might be harder than
+the others, so don't despair if they require more time to think or you
+can't do them all. Just do your best. Also, you should only attempt the
+bonus questions if you have the time to do so. If you don't have a proof
+for a certain statement, be upfront about it. You can always explain
+clearly what you are able to prove and the point at which you were
+stuck. 
+%Also, for a non bonus question, 
+You can always simply write
+\textbf{``I don't know''} and you will get 15 percent of the credit for
+this problem. If you are stuck on this problem set, you can use Piazza to
+send a private message to all staff.}
+
+%\textbf{Note on ``bonus'' questions:} There is no difference between ``bonus'' points and regular points. The indication ``bonus'' is just a helpful hint for you: it means that the question might be harder, and you might not want to spend inordinate amounts of time on it. Also, the total point value of all non bonus questions will always be at least 100, so you can get a perfect grade on the problem set component of this course without ever solving a bonus question.
+
+\newcommand{\Maj}{\mathrm{Maj}}
+\newcommand{\Comp}{\mathrm{Comp}}
+\textbf{Problem 1:} 
+
+\textbf{Problem 1.1 (10 points):} Let $\Maj_3:\{0,1\}^3 \to \{0,1\}$ be the function given by 
+$$\Maj_3(a,b,c) =
+\begin{cases}
+0 & a + b + c \le 1\\
+1 & a + b + c \ge 2
+\end{cases}.$$ 
+Give a NAND circuit with at most six NAND gates that computes $\Maj_3$. (Hint: You might find it simpler to find an AND-OR-NOT circuit computing $\Maj_3$ and then convert it to a NAND circuit. For partial credit you can use more NAND gates---1 point off if you use one extra gate, and 2 points off for two or more extra gates.)
+
+\textbf{Solution 1.1:} %Write your solution here.
+
+\textbf{Problem 1.2 (20 points):} Let $\Comp_n:\{0,1\}^{2n} \to \{0,1\}$ be the function that takes two $n$-bit integers as input and outputs $1$ if and only if  the first input is smaller than the second. Specifically,
+$$\Comp_n(A[0], \ldots, A[n-1], B[0], \ldots, B[n-1]) = 
+\begin{cases}
+1 & \sum_{i=0}^{n-1} A[i]2^i < \sum_{i=0}^{n-1} B[i]2^i\\
+0 & \sum_{i=0}^{n-1} A[i]2^i \ge \sum_{i=0}^{n-1} B[i]2^i.
+\end{cases}$$
+ Show that $\Comp_n$ has $O(n)$-sized circuits. 
+
+{\bf Hint: } Identify some intermediate variables $U[i]$, $V[i]$, $W[i]$, \ldots (you may use more or less) such that, for every $i$, $U[i]$, $V[i]$, and $W[i]$ can be computed by an $O(1)$-sized circuit from the inputs and $U[i-1]$, $V[i-1]$, and $W[i-1]$. Describe the $O(1)$-sized circuit completely, then show how this leads to an $O(n)$-sized circuit computing $\Comp_n$.
+
+\textbf{Solution 1.2:} %Write your solution here.
+
+\textbf{Problem 2 (Composition of functions):} In the following three problems, let $f,g,h:\{0,1\}^n \to\{0,1\}^n$ such that for all $x \in \{0,1\}^n$, $h(x) = g(f(x))$. 
+
+\textbf{Problem 2.1 (2 points):} Suppose $f$ can be computed by a NAND circuit with $s_1$ gates and $g$ can be computed by a NAND circuit with $s_2$ gates. Show that $h$ can be computed by a NAND circuit with $s_1 + s_2$ gates. 
+
+\textbf{Solution 2.1:} %Write your solution here.
+
+\textbf{Problem 2.2 (12 points):} Prove or disprove: If $f$ can be computed by an  NAND circuit with at most $2n$ gates, and no NAND circuit of size $n^{10}$ computes $g$, then no NAND circuit of size $n^{10}/2-10n$ computes $h$. 
+
+\textbf{Solution 2.2:} %Write your solution here.
+
+\textbf{Problem 2.3 (6 points):} Prove or disprove: If $f$ can be computed by an  NAND circuit with at most $2n$ gates, and no NAND circuit of size $n^{10}$ computes $h$, then no NAND circuit of size $n^{10}/2-10n$ computes $g$. 
+
+
+\textbf{Solution 2.3:} %Write your solution here.
+
+
+\newcommand{\Blah}{\mathrm{Blah}}
+\newcommand{\Zero}{\mathbf{0}}
+\newcommand{\One}{\mathbf{1}}
+
+\newcommand{\XOR}{\mathrm{XOR}}
+
+\iffalse{
+Not sure what this text was doing here ... commented it out - (- Madhu)	
+	f(0)=0
+f(1)=1
+f(a+b)+f(0)=f(a)+f(b)} \fi  
+
+
+\textbf{Problem 3:} For this question, let $\Blah:\{0,1\}^3 \to\{0,1\}$ be the function $\Blah(x,y,z) = x \vee (y \wedge \bar{z})$. Let $\Zero$ denote the constant function with one input and output ``$0$''. Similarly, let $\One$ denote the constant function with one input and output $1$. 
+
+\textbf{Problem 3.1 (10 points):} Prove that $\{\Blah,\Zero,\One\}$ is universal. 
+
+\textbf{Solution 3.1:} %Write your solution here.
+
+\textbf{Problem 3.2 (10 points):} Prove that $\{\Blah,\One\}$ is not universal. (Hint: Can you implement the $\Zero$ function using $\Blah$ and $\One$? It may help to look at problem 5 first, even if you don't solve it.)
+
+\textbf{Solution 3.2:} %Write your solution here.
+
+\textbf{Problem 4:} Let $\Maj_3$ be the function from Problem 1.1. Let $\XOR(x,y)$ be the function $\XOR(x,y) = (x + y) \mod 2$ (i.e., $\XOR(x,y) = 1$ if exactly one of $x$ and $y$ is one, and zero otherwise.).
+
+\textbf{Problem 4.1 (10 points):} Prove or Disprove:  $\{\Maj_3,\XOR,\Zero\}$ is universal. 
+
+\textbf{Solution 4.1:} %Write your solution here.
+
+\textbf{Problem 4.2 (10 points):} Prove or Disprove:  $\{\Maj_3,\XOR,\One\}$ is universal. 
+
+\textbf{Solution 4.2:} %Write your solution here.
+
+\textbf{Problem 5.1 (0 points, bonus):} Prove that if $n$, $a_1$, \ldots, $a_n$ are nonnegative integers, $f_1: \{0, 1\}^{a_1} \to \{0,1\}$, $f_2: \{0, 1\}^{a_2} \to \{0,1\}$, \ldots, $f_n\{0, 1\}^{a_n} \to \{0,1\}$ are functions, and any of the following conditions holds, then $\{f_1, \ldots, f_n\}$ is not universal.
+
+\begin{enumerate}
+\item For all $i$, $x_1$, \ldots, $x_{a_i}$, $1-f_i(x_1, \ldots, x_{a_i}) = f_i(1-x_1, \ldots, 1-x_{a_i})$
+\item For all $i$, $x_1 \ge y_1$, \ldots, $x_{a_i} \ge y_i$, $f_i(x_1, \ldots, x_{a_i}) \ge f_i(y_1, \ldots, y_{a_i})$
+\item For all $i$, $f_i(0, \ldots, 0) = 0$.
+\item For all $i$, $f_i(1, \ldots, 1) = 1$.
+\item {\bf (Hard):} The $\XOR$ function ``almost'' commutes with $f_i$ for all $i$, i.e., $f_i(x \oplus y) = f_i(x) \oplus f_i(y) \oplus f_i(0)$.\footnote{Strict commuting would have not allowed the ``$\oplus f_i(0)$'' correction term at the end.} More elaborately (and using proper functional notation): For all $i$, $x_1$, \ldots, $x_{a_i}$, $y_1$, \ldots, $y_{a_i}$, 
+$$f_i(\XOR(x_1, y_1), \ldots, \XOR(x_{a_i}, y_{a_i})) = \XOR \left(\XOR\left(f_i(x_1, \ldots, x_{a_i}),f_i(y_1, \ldots, y_{a_i})\right),f_i(0,\ldots,0) \right).$$
+\end{enumerate}
+
+\textbf{Solution 5.1:} %Write your solution here.
+
+\textbf{Problem 5.2 (0 points, bonus, very hard):} Prove that if none of those conditions holds, then $\{f_1, \ldots, f_n\}$ is universal. (Hint: you can get 0, 1, and NOT with negation of the first four conditions.)
+
+\textbf{Solution 5.2:} %Write your solution here.
+
+\end{document}

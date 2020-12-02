@@ -274,3 +274,9 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+*.ipynb
+*New pipeline*
+*.ipynb_checkpoints*
+*_bak*
+*.DS_Store
